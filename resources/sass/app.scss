@@ -10,5 +10,29 @@
 
 .navbar-laravel {
   background-color: #fff;
+  min-height: 72px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+body{
+  background-color: #fbfbfd;
+}
+
+
+
+.sidebar{
+  a {
+    padding: 25px 30px 25px 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #3d3b45;
+    display: block;
+  }
+  a:hover {
+    color: #3ba3e2;
+    background-color: #F6F9FD;
+    border-left: 4px solid #3ba3e2;
+    text-decoration: none;
+  }
 }
