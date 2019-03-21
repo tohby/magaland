@@ -15,6 +15,7 @@ class MagazineController extends Controller
     public function index()
     {
         //
+        return view('magazine/index');
     }
 
     /**
@@ -22,10 +23,11 @@ class MagazineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    //     return view('magazine/create');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +37,18 @@ class MagazineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //store new magazine to database
+        $this->validate($request, [
+            'volume' => 'required',
+            'deadline'  => 'required',
+        ]);
+
+        Magazine::create([
+          'magazine_volume' => $request->input('volume'),
+          'deadline' => $request->input('deadline'),
+        ]);
+
+
     }
 
     /**

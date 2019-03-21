@@ -81,7 +81,7 @@
                         <div class="card shadow border-0 rounded-0">
                             <div class="card-body p-0">
                                 <a href="#"> Home</a>
-                                <a href="#"> Magazines</a>
+                                <a href="/magazines"> Magazines</a>
                             </div>
                         </div>
                     </div>
