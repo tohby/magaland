@@ -1,0 +1,15 @@
+#https://medium.com/@renjithvk/install-laravel-in-xampp-virtual-host-b9974f42c9d8
+#httpd-vhosts.conf
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs"
+    ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs/magaland/public"
+    ServerName dev.magaland.com
+</VirtualHost>
+
+#hosts
+127.0.0.1 	localhost
+127.0.0.1	dev.magaland.com
