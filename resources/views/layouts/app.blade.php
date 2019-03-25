@@ -46,11 +46,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                        @if (Route::has('register'))
+                        {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                        @endif @else
+                        @endif --}} @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" v-pre>
@@ -74,23 +74,12 @@
             </div>
         </nav>
 
-        <main class="py-2">
-            <div class="container-fluid p-5">
-                <div class="row">
-                    <div class="col-lg-3 sidebar">
-                        <div class="card shadow border-0 rounded-0">
-                            <div class="card-body p-0">
-                                <a href="#"> Home</a>
-                                <a href="/magazines"> Magazines</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        @yield('content')
-                    </div>
-                </div>
+        <main class="py-4">
+            <div class="container">
+                @yield('content')
             </div>
         </main>
     </div>
 </body>
+
 </html>

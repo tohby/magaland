@@ -18,21 +18,15 @@ body{
   background-color: #fbfbfd;
 }
 
+.img-header{
+  max-height: 240px;
+  max-width: 1000px;
+}
 
+.container{
+  max-width: 1000px;
+}
 
-.sidebar{
-  a {
-    padding: 25px 30px 25px 30px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    color: #3d3b45;
-    display: block;
-  }
-  a:hover {
-    color: #3ba3e2;
-    background-color: #F6F9FD;
-    border-left: 4px solid #3ba3e2;
-    text-decoration: none;
-  }
+.card-title{
+  font-weight: 400;
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Magazine;
+use App\Faculty;
 use Illuminate\Http\Request;
 
-class MagazineController extends Controller
+class FacultyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class MagazineController extends Controller
     public function index()
     {
         //
-        return view('magazine/index');
     }
 
     /**
@@ -23,11 +22,10 @@ class MagazineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     //
-    //     return view('magazine/create');
-    // }
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,30 +35,16 @@ class MagazineController extends Controller
      */
     public function store(Request $request)
     {
-        //store new magazine to database
-        $this->validate($request, [
-            'volume' => 'required',
-            'closure'  => 'required',
-            'final_closure' => 'required',
-        ]);
-
-        $magazine = Magazine::create([
-          'magazine_volume' => $request->input('volume'),
-          'closure' => $request->input('closure'),
-          'final_closure' => $request->input('final_closure'),
-        ]);
-        
-        return redirect('/')->with('success', '<b>'. $magazine->magazine_volume . '</b>' . ' has been created');
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Magazine  $magazine
+     * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function show(Magazine $magazine)
+    public function show(Faculty $faculty)
     {
         //
     }
@@ -68,10 +52,10 @@ class MagazineController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Magazine  $magazine
+     * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function edit(Magazine $magazine)
+    public function edit(Faculty $faculty)
     {
         //
     }
@@ -80,10 +64,10 @@ class MagazineController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Magazine  $magazine
+     * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Magazine $magazine)
+    public function update(Request $request, Faculty $faculty)
     {
         //
     }
@@ -91,10 +75,10 @@ class MagazineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Magazine  $magazine
+     * @param  \App\Faculty  $faculty
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Magazine $magazine)
+    public function destroy(Faculty $faculty)
     {
         //
     }

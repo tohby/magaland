@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Magazine;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         // $user = User::get();
-        return view('home');
+        $today = Carbon::today();
+        $magazines = Magazine::where('closure', '>', $today)->get();
+        return view('home')->with('magazines', $magazines);
     }
 }
