@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Contribution;
+use App\Notifications\FileUploaded;
 use Illuminate\Http\Request;
 
 class ContributionController extends Controller
@@ -63,6 +65,7 @@ class ContributionController extends Controller
             'file_type' => $extension,
             'file' => $fileNameToStore,
         ]);
+        User::find(1)->notify(new FileUploaded);
         return redirect('/')->with('success', 'Contribution added');
     }
 
