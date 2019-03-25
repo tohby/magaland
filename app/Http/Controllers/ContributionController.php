@@ -36,6 +36,34 @@ class ContributionController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'terms' => 'required',
+            'volume_id'  => 'required',
+            'user_id' => 'required',
+            'file' => 'required'
+        ]);
+        if($request->hasFile('file')){
+            //get file name with the extension
+            $fileNameWithExt = $request->file('file')->getClientOriginalName();
+            //get just file name
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //get extension
+            $extension = $request->file('file')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            //image upload
+            $path = $request->file('file')->storeAs('public/contributions', $fileNameToStore);
+        }else {
+            $fileNameToStore = "noSubmission";
+        }
+
+       $contribution = Contribution::Create([
+            'magazine_id' => $request->input('volume_id'),
+            'user_id' => $request->input('user_id'),
+            'file_type' => $extension,
+            'file' => $fileNameToStore,
+        ]);
+        return redirect('/')->with('success', 'Contribution added');
     }
 
     /**
