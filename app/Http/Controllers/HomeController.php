@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         // $user = User::get();
         $today = Carbon::today();
-        $magazines = Magazine::where('closure', '>', $today)->get();
+        $magazines = Magazine::where('closure', '>', $today)->orderBy('closure', 'asc')->get();
         return view('home')->with('magazines', $magazines);
     }
 }

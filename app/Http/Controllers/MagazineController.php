@@ -49,7 +49,7 @@ class MagazineController extends Controller
           'closure' => $request->input('closure'),
           'final_closure' => $request->input('final_closure'),
         ]);
-        
+
         return redirect('/')->with('success', '<b>'. $magazine->magazine_volume . '</b>' . ' has been created');
 
     }
@@ -63,6 +63,8 @@ class MagazineController extends Controller
     public function show(Magazine $magazine)
     {
         //
+        $magazine = Magazine::find($magazine)->first();
+        return view('magazine/index')->with('magazine', $magazine);
     }
 
     /**

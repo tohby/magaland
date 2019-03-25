@@ -10,6 +10,6 @@ class Magazine extends Model
     //
     use SoftDeletes;
     protected $fillable = [
-        'magazine_volume', 'closure', 'final_closure',
+        'magazine_volume','deleted_at', 'closure', 'final_closure',
     ];
 }

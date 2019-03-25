@@ -17,3 +17,5 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('magazines', 'MagazineController');
+// Route::resource('contributions', 'ContributionController');
+Route::resource('contributions', 'ContributionController');

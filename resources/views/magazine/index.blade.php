@@ -1,6 +1,15 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+@if(Auth::User()->role === 0)
+  <h1>{{$magazine->magazine_volume}}</h1>
+  <p>Closure date: <small>{{$magazine->closure}}</small></p>
+@endif
+
 <a href="/" class="card shadow-sm mb-3" data-toggle="modal" data-target="#exampleModal">
     <div class="card-body">
-        <div class="card-text">Create new magazine</div>
+        <div class="card-text">Upload your contribution to this Issue</div>
     </div>
 </a>
 
@@ -9,7 +18,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New volume</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add new Contribution</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -17,6 +26,7 @@
             <div class="modal-body">
                 <form class="#" action="{{action("MagazineController@store")}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="volume_id" value="{{$magazine->id}}">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Volume</label>
                         <input type="text" class="form-control" name="volume" placeholder="Magazine volume" required>
@@ -40,12 +50,9 @@
         </div>
     </div>
 </div>
+<!-- <form class="" action="{{action("ContributionController@store")}}" method="post">
+  @csrf
 
-@foreach ($magazines as $magazine)
-<a href="/" class="card shadow-sm mb-3">
-    <div class="card-body text-dark">
-    <h5 class="card-title"><i class="fas fa-folder-open mr-3"></i> {{$magazine->magazine_volume}}</h5>
-    <p class="card-text">Submissions end {{\Carbon\Carbon::parse($magazine->closure)->diffForHumans()}}</p>
-    </div>
-</a>
-@endforeach
+</form> -->
+</div>
+@endsection
