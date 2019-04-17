@@ -27,7 +27,7 @@
             @if (Auth::User()->role === 0) 
                 @include('student/index') 
             @elseif (Auth::User()->role === 1) 
-                @include('cordinator/index')
+                @include('coordinator/index')
             @else 
                 @include('manager/index')
             @endif
