@@ -63,9 +63,11 @@ class MagazineController extends Controller
      */
     public function show(Magazine $magazine)
     {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
         //return all contrubitions associated to a magazines
         //show only contributiions of a student
-        // $contribution
+        $contributions = Contribution::
         //show only contributions of a faculty
         $magazine = Magazine::find($magazine)->first();
         return view('magazine/index')->with('magazine', $magazine);

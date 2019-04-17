@@ -41,4 +41,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Faculty');
     }
+
+    /**
+    *User faculty scope - this groups users based on faculty
+    *
+    */
+    public function scopeFaculty($query, $faculty)
+    {
+        return $query->where('type', $type);
+    }
 }
