@@ -12,4 +12,9 @@ class Magazine extends Model
     protected $fillable = [
         'magazine_volume','deleted_at', 'closure', 'final_closure',
     ];
+
+    public function contributions()
+    {
+        return $this->hasMany('App\Contribution');
+    }
 }

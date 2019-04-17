@@ -78,6 +78,7 @@ class ContributionController extends Controller
     public function show(Contribution $contribution)
     {
         //
+        // $myContributions = Contribution::
     }
 
     /**

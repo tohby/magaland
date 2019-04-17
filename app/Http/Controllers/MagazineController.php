@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Magazine;
+use App\Contribution;
 use Illuminate\Http\Request;
 
 class MagazineController extends Controller
@@ -62,7 +63,10 @@ class MagazineController extends Controller
      */
     public function show(Magazine $magazine)
     {
-        //
+        //return all contrubitions associated to a magazines
+        //show only contributiions of a student
+        // $contribution
+        //show only contributions of a faculty
         $magazine = Magazine::find($magazine)->first();
         return view('magazine/index')->with('magazine', $magazine);
     }

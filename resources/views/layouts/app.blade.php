@@ -76,9 +76,9 @@
 
         <main class="py-4">
             <div class="container">
-                <div class="mt-3">
+                <!-- <div class="mt-3">
                     @include('layouts/messages')
-                </div>
+                </div> -->
                 @yield('content')
             </div>
         </main>

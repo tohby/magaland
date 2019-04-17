@@ -12,4 +12,8 @@ class Contribution extends Model
     protected $fillable = [
         'user_id', 'magazine_id', 'deleted_at', 'file', 'file_type',
     ];
+    public function $magazines()
+    {
+        return $this->belongsTo('App\Magazine');
+    }
 }
