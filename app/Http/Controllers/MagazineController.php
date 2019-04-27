@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Magazine;
 use App\Contribution;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class MagazineController extends Controller
     {
         //store new magazine to database
         $this->validate($request, [
-            'volume' => 'required',
+            'magazine_volume' => 'required|unique:magazines',
             'closure'  => 'required',
             'final_closure' => 'required',
         ]);
@@ -66,11 +67,12 @@ class MagazineController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         //return all contrubitions associated to a magazines
+        $contributions = Contribution::where('magazine_id', $magazine)->get();
         //show only contributiions of a student
-        $contributions = Contribution::
+        
         //show only contributions of a faculty
         $magazine = Magazine::find($magazine)->first();
-        return view('magazine/index')->with('magazine', $magazine);
+        return view('magazine/index')->with('magazine', $magazine)->with('contributions', $user->contributions);
     }
 
     /**

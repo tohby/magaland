@@ -30,8 +30,8 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="terms" required>
-                            <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="terms">
+                            <label class="custom-control-label" for="customCheck1">Accept terms and conditions</label>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -45,4 +45,7 @@
 </div>
 
 <hr>
-<h4>Your Contributions</h4>
+<h4>Your Contributions to this issue</h4>
+@foreach ($contributions as $contribution)
+    {{$contribution->id}}
+@endforeach

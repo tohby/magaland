@@ -42,8 +42,9 @@ class ContributionController extends Controller
             'terms' => 'required',
             'volume_id'  => 'required',
             'user_id' => 'required',
-            'file' => 'required'
+            'file' => 'required|file|max:5000|mimes:jpeg,png,doc,docx',
         ]);
+
         if($request->hasFile('file')){
             //get file name with the extension
             $fileNameWithExt = $request->file('file')->getClientOriginalName();
@@ -65,7 +66,7 @@ class ContributionController extends Controller
             'file_type' => $extension,
             'file' => $fileNameToStore,
         ]);
-        User::find(1)->notify(new FileUploaded);
+        // User::find(1)->notify(new FileUploaded);
         return redirect('/')->with('success', 'Contribution added');
     }
 

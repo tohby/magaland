@@ -19,7 +19,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Volume</label>
-                        <input type="text" class="form-control" name="volume" placeholder="Magazine volume" required>
+                        <input type="text" class="form-control" name="magazine_volume" placeholder="Magazine volume" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
