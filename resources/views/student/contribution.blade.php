@@ -4,11 +4,16 @@
 <div class="my-3">
     @include('layouts/messages')
 </div>
-<a href="/" class="card shadow-sm mb-3" data-toggle="modal" data-target="#exampleModal">
-    <div class="card-body">
-        <div class="card-text">Upload your contribution to this Issue</div>
-    </div>
-</a>
+@if ($magazine->closure > $today)
+    <a href="/" class="card shadow-sm mb-3" data-toggle="modal" data-target="#exampleModal">
+        <div class="card-body">
+            <div class="card-text">Upload your contribution to this Issue</div>
+        </div>
+    </a>
+@else
+    <strong>Submissions for this Issue is clossed.</strong>
+@endif
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,21 +61,17 @@
 @foreach ($contributions as $contribution)
 <div class="row">
     <div class="col-lg-12">
-        <div class="card p-1 m-1">
-            <div class="card-body">
+        <a href="/contributions/{{$contribution->id}}" class="card p-1 m-1">
+            <div class="card-body text-dark">
                 <div class="row">
                     <div class="col-lg-1">
-                        @if ($contribution->file_type == "jpg")
+                        @if ($contribution->file_type == "pdf")
                             <span style="font-size: 30px;">
-                                <i class="fas fa-image"></i> 
+                                <i class="far fa-file-pdf"></i>
                             </span>
-                        @elseif ($contribution->file_type == "png") 
-                            <span style="font-size: 30px;">
-                                <i class="fas fa-image"></i>
-                            </span> 
                         @else 
                             <span style="font-size: 30px;">
-                                <i class="far fa-file-word"></i>
+                               <i class="fas fa-image"></i> 
                             </span>
                         @endif
                     </div>
@@ -80,7 +81,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
+
     </div>
 </div>
 @endforeach

@@ -80,8 +80,8 @@ class ContributionController extends Controller
      */
     public function show(Contribution $contribution)
     {
-        //
-        // $myContributions = Contribution::
+        $contribution = Contribution::find($contribution->id);
+        return view('contribution/index')->with('contribution', $contribution);
     }
 
     /**
@@ -93,6 +93,8 @@ class ContributionController extends Controller
     public function edit(Contribution $contribution)
     {
         //
+        $contribution = Contribution::find($contribution->id);
+        return view('student/edit_contribution')->with('contribution', $contribution);
     }
 
     /**
@@ -105,6 +107,33 @@ class ContributionController extends Controller
     public function update(Request $request, Contribution $contribution)
     {
         //
+        $this->validate($request, [
+            'file' => 'file|max:5000|mimes:jpeg,png,pdf',
+        ]);
+
+        if($request->hasFile('file')){
+            //get file name with the extension
+            $fileNameWithExt = $request->file('file')->getClientOriginalName();
+            //get just file name
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //get extension
+            $extension = $request->file('file')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            //image upload
+            $path = $request->file('file')->storeAs('public/contributions', $fileNameToStore);
+        }else {
+            $fileNameToStore = "noSubmission";
+        }
+
+        
+        $contribution->title = $request->input('title');
+        if($request->hasFile('file')) {
+            $contribution->file = $fileNameToStore;
+            $contribution->file_type = $extension;
+        }
+        $contribution->save();
+        return redirect('/contributions/'.$contribution->id)->with('success', "contribution has been updated");
     }
 
     /**
@@ -116,5 +145,8 @@ class ContributionController extends Controller
     public function destroy(Contribution $contribution)
     {
         //
+        $contribution = Contribution::find($contribution->id);
+        $contribution->delete();
+        return redirect('/')->with('success', "Contribution has been deleted");
     }
 }

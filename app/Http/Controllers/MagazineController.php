@@ -6,7 +6,7 @@ use App\User;
 use App\Magazine;
 use App\Contribution;
 use Illuminate\Http\Request;
-use PhpOffice\PhpWord\IOFactory;
+use Carbon\Carbon;
 
 class MagazineController extends Controller
 {
@@ -18,6 +18,7 @@ class MagazineController extends Controller
     public function index()
     {
         //
+        $today = Carbon::today();
         return view('magazine/index');
     }
 
@@ -67,13 +68,18 @@ class MagazineController extends Controller
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        //return all contrubitions associated to a magazines
-        $contributions = Contribution::where('magazine_id', $magazine)->get();
-        //show only contributiions of a student
+        $today = Carbon::today();
+        if (auth()->User()->role === 0) {
+            //show only contributions of a student under a magazine
+            $contributions = Contribution::where('magazine_id', $magazine->id)->where('user_id', $user_id)->get();
+            $magazine = Magazine::find($magazine->id);
+        } else {
+            # code...
+        }
         
-        //show only contributions of a faculty
-        $magazine = Magazine::find($magazine)->first();
-        return view('magazine/index')->with('magazine', $magazine)->with('contributions', $user->contributions);
+        
+        
+        return view('magazine/index')->with('magazine', $magazine)->with('contributions', $contributions)->with('today', $today);
     }
 
     /**

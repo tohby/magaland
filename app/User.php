@@ -50,8 +50,4 @@ class User extends Authenticatable
     *User faculty scope - this groups users based on faculty
     *
     */
-    public function scopeFaculty($query, $faculty)
-    {
-        return $query->where('type', $type);
-    }
 }
