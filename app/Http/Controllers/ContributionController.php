@@ -39,10 +39,11 @@ class ContributionController extends Controller
     {
         //
         $this->validate($request, [
+            'title' => 'required',
             'terms' => 'required',
             'volume_id'  => 'required',
             'user_id' => 'required',
-            'file' => 'required|file|max:5000|mimes:jpeg,png,doc,docx',
+            'file' => 'required|file|max:5000|mimes:jpeg,png,pdf',
         ]);
 
         if($request->hasFile('file')){
@@ -61,6 +62,7 @@ class ContributionController extends Controller
         }
 
        $contribution = Contribution::Create([
+            'title' => $request->input('title'),
             'magazine_id' => $request->input('volume_id'),
             'user_id' => $request->input('user_id'),
             'file_type' => $extension,

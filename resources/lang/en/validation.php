@@ -131,6 +131,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'terms' => [
+            'required' => 'You must accept terms and conditions to upload!',
+        ],
+        'file' => [
+            'mimes' => 'The file can only be an image or a PDF document!',
+        ],
     ],
 
     /*

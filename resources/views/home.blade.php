@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="card text-white shadow">
-        <img src="/svg/english.jpg" class="card-img img-header" alt="...">
+        <img src="{{ asset('svg/english.jpg') }}" class="card-img img-header" alt="...">
         <div class="card-img-overlay">
             <h1 class="card-title font-weight-bold">
                 @if (Auth::User()->role === 0) Student @elseif (Auth::User()->role === 1) Marketing Coordinator @else Marketing Manager @endif

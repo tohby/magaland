@@ -6,6 +6,7 @@ use App\User;
 use App\Magazine;
 use App\Contribution;
 use Illuminate\Http\Request;
+use PhpOffice\PhpWord\IOFactory;
 
 class MagazineController extends Controller
 {
@@ -42,8 +43,8 @@ class MagazineController extends Controller
         //store new magazine to database
         $this->validate($request, [
             'magazine_volume' => 'required|unique:magazines',
-            'closure'  => 'required',
-            'final_closure' => 'required',
+            'closure'  => 'required|date|after:yesterday',
+            'final_closure' => 'required|date|after:closure',
         ]);
 
         $magazine = Magazine::create([

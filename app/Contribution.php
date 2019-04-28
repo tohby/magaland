@@ -10,7 +10,7 @@ class Contribution extends Model
     //just to test push
     use SoftDeletes;
     protected $fillable = [
-        'user_id', 'magazine_id', 'deleted_at', 'file', 'file_type',
+        'user_id', 'magazine_id', 'deleted_at', 'file', 'file_type', 'title',
     ];
     public function magazines()
     {

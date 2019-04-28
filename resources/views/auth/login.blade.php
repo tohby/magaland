@@ -9,11 +9,11 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Magaland | Login</title>
 
-    <link rel="Stylesheet" href="CSS/app.css" />
-    <link rel="Stylesheet" href="CSS/floating-labels.css" />
+    <link rel="Stylesheet" href="{{ asset('css/app.css') }}" />
+    <link rel="Stylesheet" href="{{ asset('css/floating-labels.css') }}" />
 
     <!-- Bootstrap core CSS -->
-<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
 
     <style>
@@ -33,7 +33,6 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="floating-labels.css" rel="stylesheet">
   </head>
   <body>
     <form class="form-signin" method="POST" action="{{ route('login') }}">
