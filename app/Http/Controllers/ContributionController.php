@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Contribution;
+use App\Magazine;
+use Carbon\Carbon;
 use App\Notifications\FileUploaded;
 use Illuminate\Http\Request;
 
@@ -37,6 +39,8 @@ class ContributionController extends Controller
      */
     public function store(Request $request)
     {
+        // validate form
+        // make sure temrs and condtions are accepted
         //
         $this->validate($request, [
             'title' => 'required',
@@ -68,7 +72,7 @@ class ContributionController extends Controller
             'file_type' => $extension,
             'file' => $fileNameToStore,
         ]);
-        // User::find(1)->notify(new FileUploaded);
+        User::find(1)->notify(new FileUploaded);
         return redirect('/')->with('success', 'Contribution added');
     }
 
@@ -81,7 +85,9 @@ class ContributionController extends Controller
     public function show(Contribution $contribution)
     {
         $contribution = Contribution::find($contribution->id);
-        return view('contribution/index')->with('contribution', $contribution);
+        $magazine = Magazine::find($contribution->magazine_id);
+        $today = Carbon::today();
+        return view('contribution/index')->with('contribution', $contribution)->with('magazine', $magazine)->with('today', $today);
     }
 
     /**

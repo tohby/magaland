@@ -12,7 +12,7 @@
         <img src="/storage/contributions/{{$contribution->file}}" class="img-fluid" alt="{{$contribution->title}}"> @endif
     </div>
     <hr>
-    @if ($contribution->magazine->final_closure > $today)
+    @if ($magazine->final_closure > $today)
         <div class="row float-right mb-5">
             <a class="btn btn-primary mx-2" href="/contributions/{{$contribution->id}}/edit" role="button">Edit</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalLong">
