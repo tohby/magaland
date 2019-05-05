@@ -49,7 +49,7 @@ class MagazineController extends Controller
         ]);
 
         $magazine = Magazine::create([
-          'magazine_volume' => $request->input('volume'),
+          'magazine_volume' => $request->input('magazine_volume'),
           'closure' => $request->input('closure'),
           'final_closure' => $request->input('final_closure'),
         ]);
@@ -69,17 +69,27 @@ class MagazineController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $today = Carbon::today();
+        $faculty = auth()->user()->faculty_id;
         if (auth()->User()->role === 0) {
             //show only contributions of a student under a magazine
             $contributions = Contribution::where('magazine_id', $magazine->id)->where('user_id', $user_id)->get();
             $magazine = Magazine::find($magazine->id);
-        } else {
-            # code...
+            return view('magazine/index')->with('magazine', $magazine)->with('contributions', $contributions)->with('today', $today);
+        } else if(auth()->User()->role === 1) {
+            $contributions = Contribution::where('magazine_id', $magazine->id);
+            $magazine = Magazine::find($magazine->id);
+            $students = User::with('contributions')->whereHas('contributions', function ($query) use($magazine) {
+                $query->where('magazine_id', $magazine->id);
+            })->where('faculty_id', $faculty)->get();
+            return view('magazine/index')->with('magazine', $magazine)->with('contributions', $contributions)->with('today', $today)->with('students', $students);
         }
-        
-        
-        
-        return view('magazine/index')->with('magazine', $magazine)->with('contributions', $contributions)->with('today', $today);
+    }
+
+    public function studentContribution(Magazine $magazine, User $user){
+        $magazine = Magazine::find($magazine->id);
+        $user = User::find($user->id);
+        $contributions = Contribution::where('magazine_id', $magazine->id)->where('user_id', $user->id)->get();
+        return view('coordinator/studentContributions')->with('user', $user)->with('magazine', $magazine)->with('contributions', $contributions);
     }
 
     /**

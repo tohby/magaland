@@ -11,14 +11,16 @@ class FileUploaded extends Notification
 {
     use Queueable;
 
+    protected $contribution;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($contribution)
     {
         //
+        $this->contribution = $contribution;
     }
 
     /**
@@ -40,9 +42,10 @@ class FileUploaded extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('/contributions/'.$this->contribution->id);
         return (new MailMessage)
                     ->line('A File has been uploaded. Click the link below to view and comment on it. Please note that you have to add a comment before 14 days')
-                    ->action('View upload', url('/'))
+                    ->action('View upload', url($url))
                     ->line('Thank you for using our application!');
     }
 

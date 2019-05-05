@@ -46,6 +46,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Contribution');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }    
     /**
     *User faculty scope - this groups users based on faculty
     *

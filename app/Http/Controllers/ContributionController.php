@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Auth;
 use App\Contribution;
 use App\Magazine;
 use Carbon\Carbon;
@@ -72,8 +73,11 @@ class ContributionController extends Controller
             'file_type' => $extension,
             'file' => $fileNameToStore,
         ]);
-        User::find(1)->notify(new FileUploaded);
+        $faculty = Auth::user()->faculty_id;
+        $coordinator = User::where('faculty_id',$faculty)->where('role', 1)->first();
+        User::find($coordinator->id)->notify(new FileUploaded($contribution));
         return redirect('/')->with('success', 'Contribution added');
+        // return $coordinator;
     }
 
     /**

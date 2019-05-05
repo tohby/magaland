@@ -7,7 +7,7 @@
             <h1 class="card-title font-weight-bold">
                 @if (Auth::User()->role === 0) Student @elseif (Auth::User()->role === 1) Marketing Coordinator @else Marketing Manager @endif
             </h1>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text">Magazine Management System</p>
         </div>
     </div>
     <div class="mt-3">

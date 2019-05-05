@@ -10,7 +10,7 @@ class Contribution extends Model
     //just to test push
     use SoftDeletes;
     protected $fillable = [
-        'user_id', 'magazine_id', 'deleted_at', 'file', 'file_type', 'title',
+        'user_id', 'magazine_id', 'deleted_at', 'file', 'file_type', 'title', 'published_at',
     ];
     public function magazines()
     {
@@ -19,6 +19,11 @@ class Contribution extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\UserS');
+        return $this->belongsTo('App\User');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
     }
 }
